@@ -43,6 +43,8 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }))
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Configure Passport and Sessions
 // requires the model with Passport-Local Mongoose plugged in - Up on top 

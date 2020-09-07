@@ -1,10 +1,18 @@
 const express = require('express');
-const router = express.Router();
-const {postRegister} = require('../controllers/index')
+const router = express.Router()
+const passport = require('passport')
+const {
+  postRegister
+} = require('../controllers/index')
+const {
+  errorHandler
+} = require('../middleware/index')
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Surd Shop - Home' });
+  res.render('index', {
+    title: 'Surd Shop - Home'
+  });
 });
 
 /* GET /register */
@@ -21,8 +29,17 @@ router.get('/login', (req, res, next) => {
 });
 
 /* POST /login */
-router.post('/login', (req, res, next) => {
+router.post('/login', passport.authenticate('local', {
+  failureRedirect: '/login',
+  failureFlash: true
+}), (req, res, next) => {
   res.send('POST /login');
+});
+
+/* GET /logout */
+router.get('/logout', (req, res, next) => {
+  req.logOut()
+  res.redirect('/')
 });
 
 /* GET /profile */
