@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const passport = require('passport')
 
 module.exports = {
     async postRegister(req, res, next) {
@@ -14,6 +15,16 @@ module.exports = {
         } catch (error) {
             console.log(error)
         }
-        
+
+    },
+    postLogin(req, res, next) {
+        passport.authenticate('local', {
+            successRedirect: '/',
+            failureRedirect: '/login'
+        })(req, res, next)
+    },
+    getLogout(req, res, next) {
+        req.logOut()
+        res.redirect('/')
     }
 }
