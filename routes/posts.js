@@ -1,39 +1,26 @@
 const express = require('express');
 const router = express.Router();
+const { getPosts, newPost, createPost, showPost, editPost, postUpdate, postDelete } = require('../controllers/posts')
 
 /* GET posts index /posts */
-router.get('/', (req, res, next) => {
-    res.send('INDEX /posts');
-});
+router.get('/', getPosts);
 
 /* GET posts new /posts/new */
-router.get('/new', (req, res, next) => {
-    res.send('NEW /posts/new');
-});
+router.get('/new', newPost);
 
 /* POST posts create /posts */
-router.post('/', (req, res, next) => {
-    res.send('CREATE /posts');
-});
+router.post('/', createPost);
 
 /* GET posts show /posts/:id */
-router.get('/:id', (req, res, next) => {
-    res.send('SHOW /posts/:id');
-});
+router.get('/:id', showPost);
 
 /* GET posts edit /posts/:id/edit */
-router.get('/:id/edit', (req, res, next) => {
-    res.send('EDIT /posts/:id/edit');
-});
+router.get('/:id/edit', editPost);
 
 /* PUT posts update /posts/:id */
-router.put('/:id', (req, res, next) => {
-    res.send('UPDATE /posts/:id');
-});
+router.put('/:id', postUpdate);
 
 /* DELETE posts destroy /posts/:id */
-router.delete('/:id', (req, res, next) => {
-    res.send('DELETE /posts/:id');
-});
+router.delete('/:id', postDelete);
 
 module.exports = router;
