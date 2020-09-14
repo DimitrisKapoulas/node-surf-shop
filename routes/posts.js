@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer')
+const upload = multer({'dest': 'uploads/'})
 const { getPosts, newPost, createPost, showPost, editPost, postUpdate, postDelete } = require('../controllers/posts')
 
 /* GET posts index /posts */
@@ -9,7 +11,7 @@ router.get('/', getPosts);
 router.get('/new', newPost);
 
 /* POST posts create /posts */
-router.post('/', createPost);
+router.post('/', upload.array('images', 4), createPost);
 
 /* GET posts show /posts/:id */
 router.get('/:id', showPost);
