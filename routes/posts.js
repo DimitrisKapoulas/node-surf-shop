@@ -20,7 +20,7 @@ router.get('/:id', showPost);
 router.get('/:id/edit', editPost);
 
 /* PUT posts update /posts/:id */
-router.put('/:id', postUpdate);
+router.put('/:id', upload.array('images', 4), postUpdate);
 
 /* DELETE posts destroy /posts/:id */
 router.delete('/:id', postDelete);
